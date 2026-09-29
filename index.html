@@ -1,1 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love ❤️</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    min-height:100vh; overflow:hidden; font-family:Georgia, "Times New Roman", serif;
+    background:radial-gradient(circle at 50% 25%,#fff7fb 0,#ffddea 32%,#f8a9c8 68%,#e978aa 100%);
+    color:#7d204d; display:flex; align-items:center; justify-content:center;
+  }
+  .glow{position:fixed;width:420px;height:420px;border-radius:50%;background:#fff;filter:blur(90px);opacity:.28;top:-130px;left:50%;transform:translateX(-50%)}
+  .card{
+    position:relative; z-index:5; width:min(92%,700px); min-height:620px;
+    padding:55px 28px 35px; border:1px solid rgba(255,255,255,.7);
+    border-radius:34px; background:rgba(255,255,255,.22); backdrop-filter:blur(14px);
+    box-shadow:0 25px 70px rgba(137,26,79,.25); text-align:center;
+  }
+  .small{font-size:13px;letter-spacing:4px;text-transform:uppercase;color:#a73d6c;margin-bottom:12px}
+  h1{font-size:clamp(34px,7vw,62px);line-height:1.05;color:#9d2459;text-shadow:0 3px 20px rgba(255,255,255,.8)}
+  .sub{margin:14px auto 30px;max-width:500px;font-size:17px;color:#8b365c}
+  .stage{height:330px;position:relative;display:flex;justify-content:center;align-items:flex-end;gap:22px}
+  .balloon-wrap{position:relative;width:115px;height:285px;cursor:pointer;transition:.35s}
+  .balloon-wrap:hover{transform:translateY(-9px)}
+  .balloon{
+    position:absolute;top:0;left:7px;width:100px;height:130px;border-radius:52% 48% 50% 50%;
+    background:linear-gradient(135deg,#ffb8d6 0%,#ff6fae 48%,#e74689 100%);
+    box-shadow:inset -12px -14px 22px rgba(143,22,77,.18),inset 13px 10px 18px rgba(255,255,255,.45),0 14px 22px rgba(137,26,79,.2);
+    animation:float 2.7s ease-in-out infinite;
+  }
+  .balloon:nth-child(1){}
+  .balloon:after{
+    content:"";position:absolute;left:43px;bottom:-10px;border-left:7px solid transparent;border-right:7px solid transparent;border-top:13px solid #e74689;
+  }
+  .shine{position:absolute;left:22px;top:20px;width:17px;height:36px;border-radius:50%;background:rgba(255,255,255,.58);transform:rotate(25deg)}
+  .string{position:absolute;left:57px;top:139px;width:1px;height:143px;background:rgba(115,30,68,.5)}
+  .tag{position:absolute;top:154px;left:0;width:115px;font-size:13px;font-weight:bold;color:#8e2855}
+  .hint{position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-size:12px;letter-spacing:1px;color:#a33a68;white-space:nowrap}
+  .message{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:30px;
+    opacity:0;pointer-events:none;transition:.5s;background:rgba(255,245,250,.88);border-radius:24px;
+  }
+  .message.show{opacity:1;pointer-events:auto}
+  .message-box{max-width:540px}
+  .message h2{font-size:30px;color:#a3205b;margin-bottom:15px}
+  .message p{font-size:19px;line-height:1.65;color:#71314e}
+  .continue{margin-top:22px;border:0;border-radius:50px;padding:12px 25px;background:#d92f76;color:white;font-weight:bold;cursor:pointer;box-shadow:0 8px 20px rgba(217,47,118,.3)}
+  .final{
+    position:absolute;inset:0;z-index:20;background:radial-gradient(circle,#fff7fb,#ffd5e6 50%,#f58ab5);
+    display:none;align-items:center;justify-content:center;flex-direction:column;padding:30px;text-align:center;
+  }
+  .final.show{display:flex;animation:fade .8s ease}
+  .final .heart{font-size:64px;animation:pulse 1s infinite}
+  .final h2{font-size:clamp(42px,10vw,78px);color:#a7195c;text-shadow:0 5px 25px rgba(255,255,255,.8)}
+  .final p{font-size:21px;margin-top:15px;color:#74304e;max-width:650px;line-height:1.6}
+  .petal{position:fixed;top:-30px;font-size:20px;animation:fall linear forwards;z-index:2;pointer-events:none}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-14px) rotate(2deg)}}
+  @keyframes fade{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+  @keyframes pulse{50%{transform:scale(1.16)}}
+  @keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
+  @media(max-width:600px){
+    .card{min-height:580px;padding:42px 14px 25px}.stage{gap:2px;height:300px}
+    .balloon-wrap{width:82px}.balloon{left:0;width:76px;height:105px}.balloon:after{left:31px}
+    .shine{left:14px;top:15px}.string{left:37px;top:114px;height:155px}.tag{width:82px;top:130px;font-size:11px}
+    .hint{font-size:10px}.sub{font-size:15px}
+  }
+</style>
+</head>
+<body>
+<div class="glow"></div>
 
+<div class="card" id="card">
+  <div class="small">A little surprise for you</div>
+  <h1>Hey, My Love ❤️</h1>
+  <p class="sub">There are four little surprises waiting for you... Pop each balloon one by one 🎈</p>
+
+  <div class="stage" id="stage">
+    <div class="balloon-wrap" data-index="0"><div class="balloon"><span class="shine"></span></div><div class="string"></div><div class="tag">For your smile</div></div>
+    <div class="balloon-wrap" data-index="1"><div class="balloon"><span class="shine"></span></div><div class="string"></div><div class="tag">For your heart</div></div>
+    <div class="balloon-wrap" data-index="2"><div class="balloon"><span class="shine"></span></div><div class="string"></div><div class="tag">For us</div></div>
+    <div class="balloon-wrap" data-index="3"><div class="balloon"><span class="shine"></span></div><div class="string"></div><div class="tag">One last one...</div></div>
+    <div class="hint">TAP / CLICK THE BALLOONS 🎈</div>
+  </div>
+
+  <div class="message" id="message">
+    <div class="message-box">
+      <h2 id="messageTitle"></h2>
+      <p id="messageText"></p>
+      <button class="continue" id="continueBtn">Continue ❤️</button>
+    </div>
+  </div>
+
+  <div class="final" id="final">
+    <div class="heart">💗</div>
+    <div class="small">Today is all about you</div>
+    <h2>Happy Birthday! 🎂</h2>
+    <p>Happy Birthday to the most special person in my life. ❤️<br>
+    Keep smiling, keep shining, and always remember — you are deeply loved. 🥰</p>
+    <div style="font-size:30px;margin-top:22px">🎀 ✨ 🌸 ✨ 🎀</div>
+  </div>
+</div>
+
+<script>
+const surprises = [
+  {
+    title:"Your Smile ❤️",
+    text:"Tumhari smile mein kuch toh magic hai... ek baar tum smile kar do, mera pura mood automatically better ho jata hai. Never stop smiling, meri jaan. 🥹❤️"
+  },
+  {
+    title:"Your Heart 🌸",
+    text:"Mujhe tumhari sabse beautiful cheez sirf tumhari smile nahi, tumhara caring heart lagta hai. Tum jis tarah care karti ho, woh mere liye bahut special hai. 💗"
+  },
+  {
+    title:"Us ✨",
+    text:"Hamari chhoti-chhoti memories, random baatein, hasi-mazaak aur woh special moments... mere liye sab priceless hain. I hope hum aise hi bahut saari memories banayein. 🫶"
+  },
+  {
+    title:"One Last Secret 💌",
+    text:"Aaj tumhara birthday hai, but honestly gift toh mujhe mila hai — tumhare form mein. Thank you for being you. I love you more than these little words can explain. ❤️🥹"
+  }
+];
+
+let current = 0;
+const balloons = [...document.querySelectorAll(".balloon-wrap")];
+const message = document.getElementById("message");
+const title = document.getElementById("messageTitle");
+const text = document.getElementById("messageText");
+const btn = document.getElementById("continueBtn");
+const final = document.getElementById("final");
+
+function confetti(count=18){
+  for(let i=0;i<count;i++){
+    const p=document.createElement("div");
+    p.className="petal";
+    p.textContent=["💗","💕","🌸","✨","💖"][Math.floor(Math.random()*5)];
+    p.style.left=Math.random()*100+"vw";
+    p.style.animationDuration=(3+Math.random()*3)+"s";
+    p.style.fontSize=(14+Math.random()*18)+"px";
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),6500);
+  }
+}
+
+balloons.forEach((b,i)=>{
+  b.addEventListener("click",()=>{
+    if(i!==current) return;
+    b.style.transform="scale(0)";
+    b.style.opacity="0";
+    setTimeout(()=>{
+      b.style.display="none";
+      title.textContent=surprises[i].title;
+      text.textContent=surprises[i].text;
+      btn.textContent = i===3 ? "Show My Birthday Wish 💖" : "Continue ❤️";
+      message.classList.add("show");
+      confetti(12);
+    },250);
+  });
+});
+
+btn.addEventListener("click",()=>{
+  message.classList.remove("show");
+  if(current===3){
+    setTimeout(()=>{final.classList.add("show");confetti(55);},350);
+  }else{
+    current++;
+  }
+});
+</script>
+</body>
+</html>
